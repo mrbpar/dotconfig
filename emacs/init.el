@@ -56,6 +56,15 @@
   :init
   (global-flycheck-mode))
 
+(use-package yasnippet
+  :config
+  (yas-global-mode))
+(use-package yasnippet-snippets)
+
+(use-package company
+  :init
+  (global-company-mode))
+
 (use-package terraform-mode)
 (use-package yaml-mode)
 
