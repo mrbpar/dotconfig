@@ -10,6 +10,13 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
+;; backup files
+(setq backup-directory-alist `(("." . "~/.local/tmp")))
+(setq delete-old-versions t
+      kept-new-versions 6
+      kept-old-versions 2
+      version-control t)
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
