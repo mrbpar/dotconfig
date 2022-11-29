@@ -10,14 +10,18 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
+
 ;; backup files
-(setq backup-directory-alist `(("." . "~/.local/tmp")))
+(setq backup-directory-alist
+      `(("." . ,(concat user-emacs-directory "backups"))))
 (setq delete-old-versions t
       kept-new-versions 6
       kept-old-versions 2
       version-control t)
 
-(require 'package)
+(eval-when-compile
+  (require 'package))
+
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
 (package-initialize)
 
@@ -73,10 +77,16 @@
   (global-company-mode))
 
 (use-package terraform-mode)
+
 (use-package yaml-mode)
 
 (use-package magit)
 
+(use-package linum-mode
+  :ensure nil
+  :hook (prog-mode)
+  :config
+  (linum-format "%4d \u2502 "))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
