@@ -39,6 +39,12 @@
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe))
 
+(use-package org-mode
+  :ensure nil
+  :bind (("C-c l" . org-store-link)
+         ("C-c a" . org-agenda)
+         ("C-c c" . org-capture)))
+
 (use-package lsp-mode
   :defer t
   :commands (lsp lsp-deferred)
