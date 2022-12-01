@@ -4,3 +4,6 @@
 [user]
   name = "Mark Par"
   email = "mrbpar@gmail.com"
+
+[pull]
+	ff = only
