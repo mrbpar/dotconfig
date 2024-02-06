@@ -10,7 +10,6 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
-
 ;; backup files
 (setq backup-directory-alist
       `(("." . ,(concat user-emacs-directory "backups"))))
@@ -34,39 +33,16 @@
       use-package-expand-minimally t)
 
 (use-package auto-package-update
-  :config
-  (setq auto-package-update-delete-old-versions t)
-  (setq auto-package-update-hide-results t)
+  :custom
+  (auto-package-update-delete-old-versions t)
+  (auto-package-update-hide-results t)
   (auto-package-update-maybe))
-
-(use-package org-mode
-  :ensure nil
-  :bind (("C-c l" . org-store-link)
-         ("C-c a" . org-agenda)
-         ("C-c c" . org-capture)))
-
-(use-package lsp-mode
-  :defer t
-  :commands (lsp lsp-deferred)
-  :init (setq lsp-keymap-prefix "C-c l")
-  :hook
-  (python-mode . lsp-deferred)
-  (terraform-mode . lsp))
-
-(use-package lsp-ui
-  :defer t
-  :config
-  (setq lsp-ui-sideline-enable nil)
-  (setq lsp-ui-doc-delay 2)
-  :hook (lsp-mode . lsp-ui-mode)
-  :bind (:map lsp-ui-mode-map
-              ("C-c i" . lsp-ui-imenu)))
 
 (use-package treemacs
   :defer t
-  :config
-  (setq treemacs-no-png-images t)
-  (setq treemacs-width 25)
+  :custom
+  (treemacs-no-png-images t)
+  (treemacs-width 25)
   :bind ("C-c t" . treemacs))
 
 (use-package flycheck
@@ -82,11 +58,17 @@
   :init
   (global-company-mode))
 
-(use-package terraform-mode)
+(use-package terraform-mode
+  :hook (terraform-format-on-save-mode))
 
 (use-package yaml-mode)
 
 (use-package magit)
+
+(use-package eglot-java
+  :hook (java-mode)
+  :bind (:map eglot-java-mode-map
+         ("C-c l n" . eglot-java-file-new)))
 
 (use-package linum-mode
   :ensure nil
