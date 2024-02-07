@@ -18,6 +18,10 @@
       kept-old-versions 2
       version-control t)
 
+(use-package display-line-numbers
+  :ensure nil
+  :custom ((display-line-numbers t)))
+
 (eval-when-compile
   (require 'package))
 
@@ -69,12 +73,6 @@
   :hook (java-mode)
   :bind (:map eglot-java-mode-map
          ("C-c l n" . eglot-java-file-new)))
-
-(use-package linum-mode
-  :ensure nil
-  :hook (prog-mode)
-  :config
-  (linum-format "%4d \u2502 "))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
