@@ -10,6 +10,10 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
+(when (display-graphic-p)
+  (add-to-list 'default-frame-alist '(width . 130))
+  (add-to-list 'default-frame-alist '(height . 60)))
+
 ;; backup files
 (setq backup-directory-alist
       `(("." . ,(concat user-emacs-directory "backups"))))
@@ -38,8 +42,9 @@
   (auto-package-update-hide-results t)
   (auto-package-update-maybe))
 
-(use-package solarized-theme
-  :config (load-theme 'solarized-dark t))
+(when (display-graphic-p)
+  (use-package solarized-theme
+     :config (load-theme 'solarized-dark t)))
 
 (use-package display-line-numbers
   :ensure nil
