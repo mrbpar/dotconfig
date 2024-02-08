@@ -18,10 +18,6 @@
       kept-old-versions 2
       version-control t)
 
-(use-package display-line-numbers
-  :ensure nil
-  :custom ((display-line-numbers t)))
-
 (eval-when-compile
   (require 'package))
 
@@ -42,6 +38,13 @@
   (auto-package-update-hide-results t)
   (auto-package-update-maybe))
 
+(use-package solarized-theme
+  :config (load-theme 'solarized-dark t))
+
+(use-package display-line-numbers
+  :ensure nil
+  :hook (prog-mode))
+
 (use-package treemacs
   :defer t
   :custom
@@ -54,8 +57,7 @@
   (global-flycheck-mode))
 
 (use-package yasnippet
-  :config
-  (yas-global-mode))
+  :hook (prog-mode . yas-minor-mode))
 (use-package yasnippet-snippets)
 
 (use-package company
@@ -79,7 +81,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(auto-package-update use-package)))
+ '(package-selected-packages '(solarized-theme auto-package-update use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
