@@ -51,7 +51,6 @@
   :hook (prog-mode))
 
 (use-package treemacs
-  :defer t
   :custom
   (treemacs-no-png-images t)
   (treemacs-width 25)
@@ -68,6 +67,15 @@
 (use-package company
   :init
   (global-company-mode))
+
+(use-package helm
+  :bind (("C-x C-f" . helm-find-files)
+         ("M-x" . helm-M-x)
+         ("C-x b" . helm-mini))
+  :custom ((helm-mode 1)
+           (helm-M-x-fuzzy-match t)
+           (helm-buffers-fuzzy-matching t)
+           (helm-recentf-fuzzy-match t)))
 
 (use-package terraform-mode
   :hook (terraform-format-on-save-mode))
@@ -86,7 +94,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(solarized-theme auto-package-update use-package)))
+ '(package-selected-packages '(helm solarized-theme auto-package-update use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
