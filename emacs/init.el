@@ -50,6 +50,10 @@
   :ensure nil
   :hook (prog-mode))
 
+(use-package eglot
+  :ensure nil ; use built-in eglot package for now
+  :init (add-to-list 'eglot-server-programs '(terraform-mode . "terraform-ls")))
+
 (use-package treemacs
   :custom
   (treemacs-no-png-images t)
