@@ -61,8 +61,7 @@
   :bind ("C-c t" . treemacs))
 
 (use-package flycheck
-  :init
-  (global-flycheck-mode))
+  :hook (prog-mode))
 
 (use-package yasnippet
   :hook (prog-mode . yas-minor-mode))
