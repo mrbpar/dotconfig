@@ -46,22 +46,27 @@
   (use-package solarized-theme
      :config (load-theme 'solarized-dark t)))
 
-(use-package display-line-numbers
-  :ensure nil
-  :hook (prog-mode))
+;(use-package display-line-numbers
+;  :ensure nil
+;  :hook (prog-mode))
 
 (use-package eglot
   :ensure nil ; use built-in eglot package for now
-  :init (add-to-list 'eglot-server-programs '(terraform-mode . "terraform-ls")))
+  :config (add-to-list 'eglot-server-programs '(terraform-mode . ("terraform-ls" "serve"))))
+
+(use-package eglot-java
+  :hook (java-mode)
+  :bind (:map eglot-java-mode-map
+         ("C-c l n" . eglot-java-file-new)))
 
 (use-package treemacs
-  :custom
-  (treemacs-no-png-images t)
-  (treemacs-width 25)
+  :custom ((treemacs-no-png-images t)
+	   (treemacs-width 25))
   :bind ("C-c t" . treemacs))
 
 (use-package flycheck
-  :hook (prog-mode))
+  :hook (prog-mode)
+  :config (global-flycheck-mode))
 
 (use-package yasnippet
   :hook (prog-mode . yas-minor-mode))
@@ -73,24 +78,20 @@
 
 (use-package helm
   :bind (("C-x C-f" . helm-find-files)
-         ("M-x" . helm-M-x)
-         ("C-x b" . helm-mini))
-  :custom ((helm-mode 1)
-           (helm-M-x-fuzzy-match t)
-           (helm-buffers-fuzzy-matching t)
-           (helm-recentf-fuzzy-match t)))
+	     ("M-x" . helm-M-x)
+	     ("C-x b" . helm-mini))
+  :config (helm-mode 1)
+  :custom ((helm-M-x-fuzzy-match t)
+	       (helm-buffers-fuzzy-matching t)
+	       (helm-recentf-fuzzy-match t)))
 
 (use-package terraform-mode
-  :hook (terraform-format-on-save-mode))
+  :hook (eglot-mode)
+  :custom (terraform-format-on-save t))
 
 (use-package yaml-mode)
 
 (use-package magit)
-
-(use-package eglot-java
-  :hook (java-mode)
-  :bind (:map eglot-java-mode-map
-         ("C-c l n" . eglot-java-file-new)))
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
