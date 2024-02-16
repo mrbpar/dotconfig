@@ -46,13 +46,15 @@
   (use-package solarized-theme
      :config (load-theme 'solarized-dark t)))
 
-;(use-package display-line-numbers
-;  :ensure nil
-;  :hook (prog-mode))
+(use-package display-line-numbers
+ :ensure nil
+ :hook (prog-mode))
 
 (use-package eglot
   :ensure nil ; use built-in eglot package for now
-  :config (add-to-list 'eglot-server-programs '(terraform-mode . ("terraform-ls" "serve"))))
+  :config (add-to-list 'eglot-server-programs '(terraform-mode . ("terraform-ls" "serve")))
+  :hook ((terraform-mode . eglot-ensure)
+         (python-mode . eglot-ensure)))
 
 (use-package eglot-java
   :hook (java-mode)
@@ -86,7 +88,6 @@
 	       (helm-recentf-fuzzy-match t)))
 
 (use-package terraform-mode
-  :hook (eglot-mode)
   :custom (terraform-format-on-save t))
 
 (use-package yaml-mode)
