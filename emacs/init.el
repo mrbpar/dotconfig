@@ -44,7 +44,8 @@
 
 (when (display-graphic-p)
   (use-package solarized-theme
-     :config (load-theme 'solarized-dark t)))
+    :config (load-theme 'solarized-dark t))
+  (use-package gruvbox-theme))
 
 (use-package display-line-numbers
  :ensure nil
@@ -99,7 +100,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages '(helm solarized-theme auto-package-update use-package)))
+ '(package-selected-packages
+   '(gruvbox-theme helm solarized-theme auto-package-update use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
