@@ -1,8 +1,12 @@
 [window]
 dimensions = { columns = 130, lines = 60 }
+padding = { x = 10, y = 2 }
 opacity = 0.8
 blur = true
 option_as_alt = "OnlyLeft"
 
 [font]
 normal = { family = "Noto Sans Mono", style = "Regular" }
+
+[selection]
+save_to_clipboard = true
