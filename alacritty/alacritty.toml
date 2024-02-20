@@ -1,5 +1,5 @@
 [window]
-dimensions = { columns = 130, lines = 60 }
+dimensions = { columns = 130, lines = 50 }
 padding = { x = 10, y = 2 }
 opacity = 0.8
 blur = true
