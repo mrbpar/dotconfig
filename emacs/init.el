@@ -43,9 +43,9 @@
   (auto-package-update-maybe))
 
 (when (display-graphic-p)
-  (use-package solarized-theme
-    :config (load-theme 'solarized-dark t))
-  (use-package gruvbox-theme))
+  (use-package solarized-theme)
+  (use-package gruvbox-theme
+    :config (load-theme 'gruvbox)))
 
 (use-package display-line-numbers
  :ensure nil
@@ -53,9 +53,7 @@
 
 (use-package eglot
   :ensure nil ; use built-in eglot package for now
-  :config (add-to-list 'eglot-server-programs '(terraform-mode . ("terraform-ls" "serve")))
-  :hook ((terraform-mode . eglot-ensure)
-         (python-mode . eglot-ensure)))
+  :config (add-to-list 'eglot-server-programs '(terraform-mode . ("terraform-ls" "serve"))))
 
 (use-package eglot-java
   :hook (java-mode)
@@ -89,7 +87,12 @@
 	       (helm-recentf-fuzzy-match t)))
 
 (use-package terraform-mode
+  :hook (eglot-ensure)
   :custom (terraform-format-on-save t))
+
+(use-package python
+  :ensure nil
+  :hook (eglot-ensure))
 
 (use-package yaml-mode)
 
