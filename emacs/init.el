@@ -43,9 +43,9 @@
   (auto-package-update-maybe))
 
 (when (display-graphic-p)
-  (use-package solarized-theme
-    :config (load-theme 'solarized-dark t))
-  (use-package gruvbox-theme))
+  (use-package solarized-theme)
+  (use-package gruvbox-theme
+    :config (load-theme 'gruvbox)))
 
 (use-package display-line-numbers
  :ensure nil
@@ -53,9 +53,7 @@
 
 (use-package eglot
   :ensure nil ; use built-in eglot package for now
-  :config (add-to-list 'eglot-server-programs '(terraform-mode . ("terraform-ls" "serve")))
-  :hook ((terraform-mode . eglot-ensure)
-         (python-mode . eglot-ensure)))
+  :config (add-to-list 'eglot-server-programs '(terraform-mode . ("terraform-ls" "serve"))))
 
 (use-package eglot-java
   :hook (java-mode)
@@ -89,7 +87,12 @@
 	       (helm-recentf-fuzzy-match t)))
 
 (use-package terraform-mode
+  :hook (eglot-ensure)
   :custom (terraform-format-on-save t))
+
+(use-package python
+  :ensure nil
+  :hook (eglot-ensure))
 
 (use-package yaml-mode)
 
@@ -101,7 +104,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("7b8f5bbdc7c316ee62f271acf6bcd0e0b8a272fdffe908f8c920b0ba34871d98" default))
+   '("7b8f5bbdc7c316ee62f271acf6bcd0e0b8a272fdffe908f8c920b0ba34871d98" "046a2b81d13afddae309930ef85d458c4f5d278a69448e5a5261a5c78598e012" default))
  '(package-selected-packages
    '(gruvbox-theme helm solarized-theme auto-package-update use-package)))
 (custom-set-faces
