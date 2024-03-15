@@ -67,7 +67,7 @@
 
 (use-package treemacs
   :custom ((treemacs-no-png-images t)
-	   (treemacs-width 25))
+	       (treemacs-width 25))
   :bind ("C-c t" . treemacs))
 
 (use-package yasnippet
