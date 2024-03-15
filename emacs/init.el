@@ -70,10 +70,6 @@
 	   (treemacs-width 25))
   :bind ("C-c t" . treemacs))
 
-;; (use-package flycheck
-;;   :hook (prog-mode)
-;;   :config (global-flycheck-mode))
-
 (use-package yasnippet
   :hook (prog-mode . yas-minor-mode))
 (use-package yasnippet-snippets)
