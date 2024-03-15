@@ -1,5 +1,6 @@
 *~
 .\#*
+
 emacs/.*
 emacs/auto-save-list
 emacs/eln-cache
@@ -7,3 +8,4 @@ emacs/elpa
 emacs/recentf
 emacs/tramp
 emacs/transient
+emacs/url
