@@ -54,8 +54,11 @@
 (use-package eglot
   :ensure nil ; use built-in eglot package for now
   :hook ((terraform-mode . eglot-ensure)
-         (python-mode . eglot-ensure))
-  :config (add-to-list 'eglot-server-programs '(terraform-mode . ("terraform-ls" "serve"))))
+         (python-mode . eglot-ensure)
+         (ansible-mode . eglot-ensure))
+  :config (add-to-list 'eglot-server-programs
+                       '((terraform-mode . ("terraform-ls" "serve"))
+                         (ansible-mode . ("ansible-language-server" "--stdio")))))
 
 (use-package eglot-java
   :hook (java-mode)
@@ -67,9 +70,9 @@
 	   (treemacs-width 25))
   :bind ("C-c t" . treemacs))
 
-(use-package flycheck
-  :hook (prog-mode)
-  :config (global-flycheck-mode))
+;; (use-package flycheck
+;;   :hook (prog-mode)
+;;   :config (global-flycheck-mode))
 
 (use-package yasnippet
   :hook (prog-mode . yas-minor-mode))
@@ -93,24 +96,16 @@
 
 (use-package yaml-mode)
 
+(use-package polymode)
+
+(use-package ansible)
+
+(use-package jinja2-mode)
+
+(use-package poly-ansible)
+
 (use-package markdown-mode)
 
 (use-package magit)
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("7b8f5bbdc7c316ee62f271acf6bcd0e0b8a272fdffe908f8c920b0ba34871d98" "046a2b81d13afddae309930ef85d458c4f5d278a69448e5a5261a5c78598e012" default))
- '(package-selected-packages
-   '(markdown-mode gruvbox-theme helm solarized-theme auto-package-update use-package)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 
 ;;; init.el ends here
