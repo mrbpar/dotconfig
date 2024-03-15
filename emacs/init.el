@@ -87,6 +87,8 @@
 	       (helm-buffers-fuzzy-matching t)
 	       (helm-recentf-fuzzy-match t)))
 
+(use-package which-key)
+
 (use-package terraform-mode
   :custom (terraform-format-on-save t))
 
@@ -105,3 +107,16 @@
 (use-package magit)
 
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(which-key yasnippet-snippets treemacs terraform-mode solarized-theme poly-ansible markdown-mode magit helm gruvbox-theme flycheck eglot-java company auto-package-update)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
