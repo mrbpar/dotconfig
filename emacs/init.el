@@ -45,7 +45,7 @@
 (when (display-graphic-p)
   (use-package solarized-theme)
   (use-package gruvbox-theme
-    :config (load-theme 'gruvbox)))
+    :config (load-theme 'gruvbox t)))
 
 (use-package display-line-numbers
  :ensure nil
@@ -53,6 +53,8 @@
 
 (use-package eglot
   :ensure nil ; use built-in eglot package for now
+  :hook ((terraform-mode . eglot-ensure)
+         (python-mode . eglot-ensure))
   :config (add-to-list 'eglot-server-programs '(terraform-mode . ("terraform-ls" "serve"))))
 
 (use-package eglot-java
@@ -87,14 +89,11 @@
 	       (helm-recentf-fuzzy-match t)))
 
 (use-package terraform-mode
-  :hook (eglot-ensure)
   :custom (terraform-format-on-save t))
 
-(use-package python
-  :ensure nil
-  :hook (eglot-ensure))
-
 (use-package yaml-mode)
+
+(use-package markdown-mode)
 
 (use-package magit)
 
@@ -106,7 +105,7 @@
  '(custom-safe-themes
    '("7b8f5bbdc7c316ee62f271acf6bcd0e0b8a272fdffe908f8c920b0ba34871d98" "046a2b81d13afddae309930ef85d458c4f5d278a69448e5a5261a5c78598e012" default))
  '(package-selected-packages
-   '(gruvbox-theme helm solarized-theme auto-package-update use-package)))
+   '(markdown-mode gruvbox-theme helm solarized-theme auto-package-update use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
