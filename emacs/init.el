@@ -48,8 +48,16 @@
     :config (load-theme 'gruvbox t)))
 
 (use-package display-line-numbers
- :ensure nil
- :hook (prog-mode))
+  :ensure nil
+  :hook (prog-mode))
+
+(use-package org
+  :ensure nil
+  :custom
+  (org-latex-packages-alist '(("" "booktabs")("" "array")("" "minted")))
+  (org-latex-listings 'minted)
+  (org-latex-pdf-process '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+                           "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f")))
 
 (use-package eglot
   :ensure nil ; use built-in eglot package for now
@@ -87,7 +95,8 @@
 	       (helm-buffers-fuzzy-matching t)
 	       (helm-recentf-fuzzy-match t)))
 
-(use-package which-key)
+(use-package which-key
+  :custom (which-key-mode t))
 
 (use-package terraform-mode
   :custom (terraform-format-on-save t))
