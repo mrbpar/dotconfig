@@ -47,6 +47,10 @@
   (use-package gruvbox-theme
     :config (load-theme 'gruvbox t)))
 
+(use-package emacs
+  :init
+  (setq tab-always-indent 'complete))
+
 (use-package display-line-numbers
   :ensure nil
   :hook (prog-mode))
@@ -82,18 +86,24 @@
   :hook (prog-mode . yas-minor-mode))
 (use-package yasnippet-snippets)
 
-(use-package company
+(use-package corfu
+  :custom
+  (corfu-cycle t)
+  (corfu-auto t)
   :init
-  (global-company-mode))
+  (global-corfu-mode))
 
-(use-package helm
-  :bind (("C-x C-f" . helm-find-files)
-	     ("M-x" . helm-M-x)
-	     ("C-x b" . helm-mini))
-  :config (helm-mode 1)
-  :custom ((helm-M-x-fuzzy-match t)
-	       (helm-buffers-fuzzy-matching t)
-	       (helm-recentf-fuzzy-match t)))
+(use-package vertico
+  :init (vertico-mode))
+
+(use-package savehist
+  :init (savehist-mode))
+
+(use-package orderless
+  :init
+  (setq completion-styles '(orderless basic)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion)))))
 
 (use-package which-key
   :custom (which-key-mode t))
@@ -121,8 +131,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(org-latex-src-block-backend 'minted nil nil "Customized with use-package org")
  '(package-selected-packages
-   '(which-key yasnippet-snippets treemacs terraform-mode solarized-theme poly-ansible markdown-mode magit helm gruvbox-theme flycheck eglot-java company auto-package-update)))
+   '(vertico orderless corfu which-key yasnippet-snippets treemacs terraform-mode solarized-theme poly-ansible markdown-mode magit helm gruvbox-theme flycheck eglot-java company auto-package-update)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
